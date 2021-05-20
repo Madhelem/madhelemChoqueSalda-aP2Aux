@@ -1,210 +1,143 @@
-//-----------------TAREA1- Cree una variable “name” y dele como valor su nombre
-
-let Name :String = "Madhelem"; 
-
-
-// --------------TAREA2 Luego intente cambiar el valor de “name” por un numero 
-
-//Name =5;
-
-
-/*- --------------TAREA3-¿Por qué TypeScript no le permite realizar la acción anterior?
-R.-  En TypeScript no es necesario declarar el Tipo de una variable
-    implícitamente Typescript le asigna el Tipo «string»
-    a la variable «name». como  Typescript  es un  lenguajes con tipado estático 
-    permiten detectar errores de asignación en tiempo de desarrollo  por  eso nos 
-    marca como  error */
-
-
-
-
+ //-------------------TAREA 2-1  Cree una clase llamada “Department”
+// - Agregue las siguientes propiedades a la clase:
 /*
---------------------TAREA 4-Cree una función llamada “greet” para poder saludar a una persona y además mostrarle su edad, 
-   es decir, la salida de la función debe ser algo parecido a “hello Josie, your age is 25”,*/
-
-/*function greet(nombre :String, age :number ) :String {
-
-    return "hello "+ nombre+" your  age is "+age;
-    
-
-}
-console.log(greet("Josie",25));*/
-
-   /*
--------------------TAREA5   ¿Qué tipo de retorno le asigno TypeScript a esta función?
-
-R.- El tipo de  retorno  es  un dato String  esto sucede  porque   es  un  codigo  fuertemente tipado y  en esste caso  se asigno el 
-a la funcion de  tipo string  y por  ello  nos  devolvera  en todo  caso un dato string, en caso de  que  se quiera devolver  un dato de 
-tio  number  nos  saldra  un error , pero en caso   no especifiquemos  que dato obtendra  de  regreso  la funcion   tomara  como tipo de  dato de  
-regreso el tipo de  dato  que  esta  regresando  con el return 
-*/
+o owner: su nombre completo
+o id: un id para identificar el departamento
+o workers: una lista de los trabajadores
+o createWorker: un método para agregar empleados al departamento
+o showEmployeesInfo: un método para mostrar la información de los empleados (la cantidad y los nombres)*/
+ 
+class Department {
+    //Use el modificador “private” en la propiedad name de la clase “Deparment”
+    constructor(protected owner: String ,public _id?: number) //cambiemos  el modo  de  acceso de la variable o "utilizar modificadores"  a "protected" porque private nos  saldra error  al utilizar 
+                                                              //  a las  demas clases heredadas si lo tubiera 
+    {
+        this.owner=owner;
+        this._id=_id;
 
 
-/*
-- ------------------TARREA 6  Cree una función donde el tipo de retorno “never” sea útil
-*/
-//esta  funcion nuca termino de  ejecutarse ,arroja  un error, nunca  sale de la funcion esto nos  puede  ser util  para  emitir  los mensajes  de  errror 
-/*function funcionArrojaError(): never{
-
-    throw new Error("ha  ocurido  un grave  error");
-}
-function keepProcessing(): never { 
-            //y la keepProcessing()función siempre se está ejecutando y nunca alcanza un punto final porque el ciclo while nunca termina. Por lo tanto, nunca se usa 
-            //el tipo para indicar el valor que nunca ocurrirá o regresará de una función
-            while (true) 
-            { 
-              console.log('I always does something and never ends.')
-            }
-}
-keepProcessing();
-//funcionArrojaError();
-
-/*------------------------------------
-// Otro  ejemplo que  sea util  usando este  tipo pordria ser  la  siguiente en el uso popular para `never` es asegurarse de que una
-// cláusula `switch` sea exhaustiva. Por ejemplo, que todas
-// las rutas han sido cubiertas.
-
-// Aquí hay una enumeración y una cláusula `switch` exhaustiva,
-// intenta añadir una nueva opción a la enumeración
-// (¿tal vez Tulip?)
-
-enum Flower {
-  Rose,
-  Rhododendron,
-  Violet,
-  Daisy,//si  asignamos  aqui  Tulip no  será  posible  ya  que  con la  funcion never  //decimos  que  nunca  pasarra
-}
-
-const flowerLatinName = (flower: Flower) => {
-  switch (flower) {
-    case Flower.Rose:
-      return "Rosa rubiginosa";
-    case Flower.Rhododendron:
-      return "Rhododendron ferrugineum";
-    case Flower.Violet:
-      return "Viola reichenbachiana";
-    case Flower.Daisy:
-      return "Bellis perennis";
-
-    default:
-      const _exhaustiveCheck: never = flower;
-      return _exhaustiveCheck;
-  }
-};
-console.log(flowerLatinName)
-
-// Recibirás un error de compilación diciendo que tu
-// nuevo tipo de flor no puede convertirse en `never`.
-
-// Never en Uniones
-
-// Un tipo `never` es algo que es automáticamente removido
-// de una unión de tipos.
-
-type NeverIsRemoved = string | never | number;
-
-// Si analizas el tipo de NeverIsRemoved, podrás observar que
-// es un string | number. Esto se debe a nunca puede pasar en
-// tiempo de ejecución debido a que no puedes asignar a un tipo
-// `never`.
+    }         
 
 
-
-
-
-/*
-- ----------------TAREA 7--Cambie el tipo de retorno de la función “greet” a “never”
-
-*/
-/*function greet(nombre :String, age :number ) :never   {
-    let e :String=  "hello "+ nombre+" your  age is "+age;
-    return e
-    
-
-}
-let e :String=(greet("Josie",25));
-console.log(e)*/
-
-
-
-/*
-
-- -------------TAREA8  --¿La acción anterior le da algún error? ¿Sí? ¿No? ¿Por qué?
-R.-  si existe  un error  pero  este  aun asi se compila   y  se  muestra   ocure  este  error 
-porque explicado en el documento  word
-*/
-
-/*
----------------TAREA9 Modifique la función “greet” para poder implementar una función 
-  como parámetro la cual se encargará de imprimir o generar el saludo, 
-  establezca los tipos de datos necesarios para que la función cumpla con los
-  requerimientos de TypeScript*/ 
-  
-     // funcion que  no s ayudara  a generar  el saludo 
-    function saludo (x: String, h:number): String {
-        let e: String= "hello "+ x+" your  age is "+h;
-        return e 
-    }
-
-   
-    // A una función podemos pasarle otras funciones como parámetros
-    /*function greet(f: (j:String ,x: number) => String, j:String ,x:number) :String {
+    private static workers: Array<Department> = [];//no necesiamos de una  instancia  para  ejecutarla
+//createWorker: un método para agregar empleados al departamento
+    public static createWorker(user: Department): void {
         
-        return f(j,x);
+        this.workers.push(user);
+        
+     
     }
 
-    console.log(greet(saludo, "juana",1));
-  */
-  
-  
-  
-  
-  /*
---------------------TAREA 10 Haga una llamada a la función para comprobar sus resultados*/
 
-
-//console.log(greet(saludo, "Josie",25));
-
-
-
-
-/*
-----------------------TAREA  11 Modifique una vez más la función de “greet” para poder imprimir su año de nacimiento,
-  pero agregue un parámetro para poder imprimirlo como numero o como cadena, de manera 
-  que dependiendo que argumento le pasen, lo imprima como uno de estos dos tipos de datos
-*/
-
-//una manera  de  poder aceptar  el parametro como  numero o como cadena 
-   /* function greet(f: (j:String ,x: number) => String, j:String ,x:number, a: number | string) :String {
-        if (typeof a=== 'number')
-        {
-          return f(j,x)+" date of birth "+a.toString();
-        }
-        else 
-        {
-          return f(j,x)+" date of birth "+a;
-
-        }
-       
+//showEmployeesInfo: un método para mostrar
+// la información de los empleados (la cantidad y los nombres)
+     public static showEmployeesInf (): void {
+        console.log(this.workers );
+        console.log("la cantidad  de  empleados  son:"+this.workers.length);
     }
-
-    console.log(greet(saludo, "juana",1,"8"));*/
-  
-//------------------segunda  manera de  reaizar  esto
-   function greet(f: (j:String ,x: number) => String, j:String ,x:number, a: number | string) :number | string {
-       
-          return f(j,x)+" date of birth "+a.toString();
-      
-       
-    }
-
-    console.log(greet(saludo, "juana",1,7));
+    
 
 
-/*
-- Es necesario que TODOS los parámetros o variables estén tipados apropiadamente 
-  (no valen tipos como “any”, “unknow”, etc)
-*/
+}
+//Cree una instancia de la clase “Department” tomando como argumento su nombre y un id para identificar el Departamento
+// (programe el constructor como desee para este fin) y luego agregue 3 empleados
+
+
+let empleadoq1: Department = new Department("Felipe",1);
+let empleadoq2: Department = new Department("analis",2);
+let empleadoq3: Department = new Department("maria",1);
+Department.createWorker(empleadoq1);
+Department.createWorker(empleadoq2);
+Department.createWorker(empleadoq3);
+//Muestre la información de los empleados haciendo uso del metodo
+Department.showEmployeesInf();//aqui  nos  muestra  toda la informacion
 
 
 
+
+//-------------------- herencia 
+
+//Cree otra clase llamada “CEODeparment”
+class CEODeparment extends Department
+{
+//Herede las propiedades de la clase “Deparment”
+//Agregue las siguientes propiedades:
+//o admins: una lista con los roles disponibles. Como ser: “AUTHOR”, “ADMIN”, etc
+public admins: Array<String> = ["author", "admin"];
+constructor(public owner: string ,public _id?: number) {
+     super(owner,_id); 
+     
+    
+}         
+
+
+
+}
+//- Cree una instancia de “CEODepartment” y agregue tres roles tomados como uno de los argumentos
+let hd= new CEODeparment("author");
+//- Muestre la propiedad “admins” de la instancia creada
+hd.admins.push("servicio","redes","contaduria")
+console.log(hd.admins);
+
+
+
+//--------herencia
+
+
+//Cree otra clase llamada “ReportsDepartment” y herede la clase “Department”
+
+class ReportsDepartment extends Department
+{
+/*- Agregue las siguientes propiedades:
+o reports: una lista que contendrá reportes. Por ejemplo: “task 004 failed”, etc
+o addReport: un método para agregar nuevos reportes*/   
+
+
+//Impida que se agreguen mas reportes salvo utilizando el método creado (use modificadores)  
+
+private reports: Array<String>;
+constructor(nom: String, id?: number) {
+    super(nom, id);
+   
+this.reports=new Array<String>();
+
+}
+
+public addReport(infre:String): void
+{
+        
+        this.reports.push(infre);
+                
+}
+
+
+/*Agregue un método “greet” en la instancia de la clase “ReportsDepartment” para mostrar un mensaje de la siguiente manera: “Hello ${name} there are ${reports.length} reports” 
+donde “name” y “reports” son las propiedades correspondientes.*/
+greet  () {
+        
+      console.log(`Hello ${this.owner} there are ${this.reports.length} reports`)
+     //esta  funcion sale  error  si  cambiamos   en modos  de  acceso de  la  variable 
+     //owner a "private" pero  si  modificamos  esta  por "protected" esta  nos  permite  usar  la  
+     //variable   en diferentes  metodos  de la clase .         
+} 
+
+
+
+}
+//Cree una instancia de la clase “ReportsDepartment”
+let r1 = new ReportsDepartment("task 004 failed");
+//Ejecute el método “addReport” para agregar tres reportes
+r1.addReport('task 004 failed');
+r1.addReport('task 005 failed');
+r1.addReport('task 006 failed');
+
+
+/*Agregue un reporte sin usar el método addReport
+/*r1.reports.push('task 008 failed');//ERROR  PORQUE  SE  RESTRINGIO  COMO  PRIVATE A 
+                                      A  LA  VARIABLE  "reports"
+console.log(r1.reports);*/ 
+
+/*Agregue un método “greet” en la instancia de la clase “ReportsDepartment” para mostrar un mensaje de la siguiente manera: “Hello ${name} there are ${reports.length} 
+reports” donde “name” y “reports” son las propiedades correspondientes.*/
+
+console.log(r1.greet());//ver  mas  ariba el metodo 
